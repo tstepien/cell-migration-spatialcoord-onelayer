@@ -3,7 +3,7 @@ clear variables global
 addpath emcee_mymod
 
 % location of experimental data
-filestring = 'experimental_data/100714 Animal cap x0.8 Scion x2_0/Pos2_exp1/';
+filestring = 'experimental_data/100714 Animal cap x0.8 Scion x2_0/Pos6_exp3/';
 
 %%%-------------------------- time parameters --------------------------%%%
 time.end = (120-1)*(5/60); %%% how long simulation runs in hours
@@ -11,13 +11,13 @@ time.exp_step = 5/60; %%% how many hours between recording a curve
 
 %%%--------------------------- mesh details ----------------------------%%%
 number_nodes = 100;
-exp_px = [492,504]; %size of experimental window in pixels
+exp_px = [342,352]; %size of experimental window in pixels
 exp_scale = .177; %pixels per micron scale
 
 %%%------------------------- model parameters --------------------------%%%
 growthfunction = 'logistic_masslimited';
 
-nameofsavedfile = strcat('Pos2exp1_',growthfunction);
+nameofsavedfile = strcat('Pos6exp3_',growthfunction);
 
 numwalkers = 2000;
 threshold = 1500;

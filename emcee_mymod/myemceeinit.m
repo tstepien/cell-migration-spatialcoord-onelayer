@@ -1,5 +1,5 @@
-function [paramval,minquant] = myemceeinit(numwalkers,threshold,filestring,growthfunction,...
-    time,number_nodes,exp_px,exp_scale)
+function [paramval,minquant] = myemceeinit(numwalkers,threshold,filestring,...
+    nameofsavedfile,growthfunction,time,number_nodes,exp_px,exp_scale)
 
 %%% range for uniform distribution
 mrange = [0 , 1.5 ; ... % F/k
@@ -29,4 +29,6 @@ for ii=1:numwalkers
     
     paramval(:,ii) = minit;
     minquant(ii) = min_quantity;
+    
+    save(strcat('emceeinit_',nameofsavedfile,'.mat'),'paramval','minquant')
 end
