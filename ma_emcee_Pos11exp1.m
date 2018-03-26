@@ -21,7 +21,7 @@ growthfunction = 'logistic_masslimited';
 
 nameofsavedfile = strcat('Pos11exp1_',growthfunction);
 
-numruns = 4000;
+numruns = 15;
 
 %%% initial values for walkers (use previously calculated optimized
 %%% parameter values) (or) (use halfway points)
@@ -31,6 +31,7 @@ numruns = 4000;
 % [models,logP] = myemceerun_par(mu,numruns,filestring,growthfunction,...
 %     time,number_nodes,exp_px,exp_scale);
 
-filename_previousrun = 'emcee_Pos11exp1_logistic_masslimited_7.mat';
+% filename_previousrun = 'emcee_Pos11exp1_logistic_masslimited_7.mat';
+filename_previousrun = 'emceeinit_2000samples_Pos11exp1.mat';
 [models,logP] = myemceerun_par(filename_previousrun,numruns,filestring,growthfunction,...
     time,number_nodes,exp_px,exp_scale);
