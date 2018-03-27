@@ -17,11 +17,11 @@
 
 ### CPUtime required in hhh:mm:ss. The maximum is 720:00:00
 ### Leading 0's can be omitted e.g 48:0:0 sets 48 hours
-#PBS -l cput=240:00:00
+#PBS -l cput=720:00:00
 
 ### Walltime is created by cputime divided by total cores.
 ### This field can be overwritten by a longer time
-#PBS -l walltime=48:00:00
+#PBS -l walltime=72:00:00
 
 ### Request email when job begins and ends
 #PBS -m bea
