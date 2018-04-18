@@ -8,14 +8,14 @@ names = {'Pos11exp1','Pos14exp7','Pos14exp2','Pos10exp3','Pos14exp6','Pos10exp1'
 
 LN = length(names);
 
+total_n = 2000;
+percent_holdon = 0.2;
+n = percent_holdon * total_n;
+
 xbar = zeros(LN,4);
 s = zeros(LN,4);
 
-n = 2000;
 tstar = tinv((1+0.95)/2 , n-1);
-
-CIlower = zeros(LN,4);
-CIupper = zeros(LN,4);
 
 Fk = zeros(n,LN);
 kb = zeros(n,LN);
@@ -24,22 +24,16 @@ rho0 = zeros(n,LN);
 
 
 for i = 1:length(names)
-    load(strcat('emcee_',names{i},'_15iterations.mat'))
+    load(strcat('emceeinit_2000samples_',names{i},'.mat'))
     
-    m = models(:,:,15)';
-    Fk(:,i) = m(:,1);
-    kb(:,i) = m(:,2);
-    alpha(:,i) = m(:,3);
-    rho0(:,i) = m(:,4);
+    [sortedValues,sortIndex] = sort(minquant); %%% sort minquant vector
+    minIndex = sortIndex(1:n); %%% hold on to indices of smallest n errors
     
-    for j = 1:4
-        xbar(i,j) = mean(m(:,j));
-        s(i,j) = std(m(:,j));
-        
-        CIlower(i,j) = xbar(i,j) - tstar * s(i,j)/sqrt(n);
-        CIupper(i,j) = xbar(i,j) + tstar * s(i,j)/sqrt(n);
-    end
-    
+    m = paramval'; %%% hold on to parameter values corresponding with smallest n errors
+    Fk(:,i) = m(minIndex,1);
+    kb(:,i) = m(minIndex,2);
+    alpha(:,i) = m(minIndex,3);
+    rho0(:,i) = m(minIndex,4);
 end
 
 %%% for comparison, defaults are:

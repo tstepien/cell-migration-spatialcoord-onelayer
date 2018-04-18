@@ -109,11 +109,13 @@ else
     p.grid='off';
 end
 
+peakLocation = zeros(1,size(m,2));
+
 clf
 H=nan(M);
 for r=1:M
     for c=1:max(r,M*p.fullmatrix)
-        H(r,c)=subaxis(M,M,c,r,'s',0.01,'mb',0.12,'mt',0.05,'ml',0.12,'mr',0.0);
+        H(r,c)=subaxis(M,M,c,r,'sv',0.01,'sh',0.02,'mb',0.14,'mt',0.01,'ml',0.11,'mr',0.015);
         if c==r
             if p.ks
                 [F,X,bw]=ksdensity(m(:,r),'support',p.support(:,r)); %TODO: use ESS 
@@ -157,13 +159,52 @@ for r=1:M
             set(gca,'XGrid',p.grid,'YGrid',p.grid)
             if diff(p.range(1:2,r))>0, set(gca,'Ylim',p.range(1:2,r)); end
         end
-        if r==M, xlabel(['^{ }' p.names{c} '_{ }']);end
+        xtickangle(45)
+        set(gca,'FontSize',14,'TickLength',[0.025,0.025])
+        if r==M
+%             xlabel(['^{ }' p.names{c} '_{ }']);
+            xlabel(p.names{c},'FontSize',20,'Interpreter','latex');
+        end
 %         if (c==1)&(r>1-p.fullmatrix), ylabel(['^{ }' p.names{r} '_{ }']);end
-        if (c==1), ylabel(['^{ }' p.names{r} '_{ }']);end
-        if diff(p.range(1:2,c))>0, set(gca,'Xlim',p.range(1:2,c)'); end
+        if (c==1)
+%             ylabel(['^{ }' p.names{r} '_{ }']);
+            ylabel(p.names{r},'FontSize',20,'Interpreter','latex');
+        end
+%         if diff(p.range(1:2,c))>0, set(gca,'Xlim',p.range(1:2,c)'); end
+        if c==1
+            xlimpts = [0,1.5];
+        elseif c==2
+            xlimpts = [0,5000];
+        elseif c==3
+            xlimpts = [0,1];
+        elseif c==4
+            xlimpts = [1000,2000];
+        end
+        xlim(xlimpts)
+        if r==c
+            [~,peakIndex] = max(F);
+            peakLocation(r) = X(peakIndex);
+            ypts = get(gca,'YLim');
+            hold on
+            line([peakLocation(r),peakLocation(r)],ypts,'Color','k','LineStyle','--')
+            hold off
+        end
     end
     
 end
+            keyboard
+for r=1:M
+    for c=1:max(r,M*p.fullmatrix)
+        if r>c
+            xpts = get(gca,'XLim');
+            ypts = get(gca,'YLim');
+            hold on
+            line(xlimpts,[mode(m(:,r)),mode(m(:,r))],'Color','red','LineStyle','--')
+            hold off
+        end
+    end
+end
+        
 h=H(:,2:end);h(isnan(h))=[];
 set(h,'YTickLabel',[])
 h=H(1:M-1,:);h(isnan(h))=[];
