@@ -51,11 +51,13 @@ yticklabels(flip(names))
 
 figure
 scatter(initialarea,meanSD_Fk(:,1))
+n = 2000;
+sp = stats_Fk.s;
+moe = tstar*sp/sqrt(n);
 for i=1:LN
-    line([initialarea(i),initialarea(i)],[meanSD_Fk(i,1)-meanSD_Fk(i,2),...
-        meanSD_Fk(i,1)+meanSD_Fk(i,2)])
+    line([initialarea(i),initialarea(i)],[meanSD_Fk(i,1)-moe,...
+        meanSD_Fk(i,1)+moe])
 end
-
 xlabel('Initial Area')
 ylabel('mean')
 

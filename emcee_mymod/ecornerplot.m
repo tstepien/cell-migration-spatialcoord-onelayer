@@ -181,7 +181,7 @@ for r=1:M
             xlimpts = [1000,2000];
         end
         xlim(xlimpts)
-        if r==c
+        if r==c %%% add dashed lines on 1D projections
             [~,peakIndex] = max(F);
             peakLocation(r) = X(peakIndex);
             ypts = get(gca,'YLim');
@@ -192,15 +192,36 @@ for r=1:M
     end
     
 end
-            keyboard
-for r=1:M
+for r=1:M %%% add dashed lines on 2D projections
     for c=1:max(r,M*p.fullmatrix)
         if r>c
-            xpts = get(gca,'XLim');
-            ypts = get(gca,'YLim');
-            hold on
-            line(xlimpts,[mode(m(:,r)),mode(m(:,r))],'Color','red','LineStyle','--')
-            hold off
+            h=H(r,c);
+            if c==1
+                pLvert = peakLocation(1);
+                if r==2
+                    pLhoriz = peakLocation(2);
+                elseif r==3
+                    pLhoriz = peakLocation(3);
+                elseif r==4
+                    pLhoriz = peakLocation(4);
+                end
+            elseif c==2
+                pLvert = peakLocation(2);
+                if r==3
+                    pLhoriz = peakLocation(3);
+                elseif r==4
+                    pLhoriz = peakLocation(4);
+                end
+            elseif c==3 && r==4
+                pLvert = peakLocation(3);
+                pLhoriz = peakLocation(4);
+            end
+            xpts = get(h,'XLim');
+            ypts = get(h,'YLim');
+            hold(h,'on')
+            line([pLvert,pLvert],ypts,'Color','k','LineStyle','--','Parent',h)
+            line(xpts,[pLhoriz,pLhoriz],'Color','k','LineStyle','--','Parent',h)
+            hold(h,'off')
         end
     end
 end
