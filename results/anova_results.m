@@ -154,7 +154,19 @@ samegroups_addrepeats_alpha = sortrows([samegroups_alpha ; ...
     samegroups_alpha(:,2) , samegroups_alpha(:,1)]);
 
 
-% [p_rho0,tbl_rho0,stats_rho0] = anova1(rho0);
-% figure
-% [c_rho0,meanSD_rho0,h_rho0] = multcompare(stats_rho0);
-% yticklabels(flip(names))
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% rho0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+[p_rho0,tbl_rho0,stats_rho0] = anova1(rho0,[],'off');
+[c_rho0,meanSD_rho0,h_rho0] = multcompare(stats_rho0,'Display','off');
+yticklabels(flip(names))
+
+%%% determine compact letter display
+csort_rho0 = sortrows(c_rho0,6);
+
+ind = (csort_rho0(:,6)>=asig);
+samegroups_rho0 = sortrows(csort_rho0(ind,1:2));
+
+samegroups_addrepeats_rho0 = sortrows([samegroups_rho0 ; ...
+    samegroups_rho0(:,2) , samegroups_rho0(:,1)]);
