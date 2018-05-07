@@ -71,10 +71,23 @@ co = [0       0.4470    0.7410; ...
     0.6350    0.0780    0.1840;
     0.6       0.6       0.6];
 
+fs_label = 20;
+fs_ticks = 14;
+fs_groups = 14;
+
+psv = 0.1;
+psh = 0.07;
+pmb = 0;
+pmt = 0.06;
+pml = 0;
+pmr = 0.005;
+
+ispread = [0,-0.045,-0.025,-0.01,0,0,0,0,-0.01,0,0.02,0.05,0,0,0,0,0,0];
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% F/k %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 [p_Fk,tbl_Fk,stats_Fk] = anova1(Fk,[],'off');%names);
 [c_Fk,meanSD_Fk,h_Fk] = multcompare(stats_Fk,'Display','off');
-yticklabels(flip(names))
+% yticklabels(flip(names))
 
 %%% determine compact letter display
 csort_Fk = sortrows(c_Fk,6);
@@ -86,29 +99,38 @@ samegroups_addrepeats_Fk = sortrows([samegroups_Fk ; ...
     samegroups_Fk(:,2) , samegroups_Fk(:,1)]);
 
 groups_Fk = {'AB','AC','D','D','AB',...
-    'DE','AB','C','F','--',...
+    'DE','AB','C','F','***',...
     'C','F','C','BG','EG',...
-    'F','C','--'};
+    'F','C','***'};
 color_Fk = [co(1,:);co(2,:);co(3,:);co(3,:);co(1,:);...
     co(3,:);co(1,:);co(2,:);co(4,:);co(end,:);...
     co(3,:);co(4,:);co(3,:);co(5,:);co(5,:);...
     co(4,:);co(3,:);co(end,:)];
 
 %%% boxplot
-subplot(2,2,1)
+subaxis(2,2,1,'sv',psv,'sh',psh,'mb',pmb,'mt',pmt,'ml',pml,'mr',pmr)
 boxplot(Fk,'Positions',initialarea,'Colors',color_Fk,'BoxStyle','filled',...
     'MedianStyle','target','Symbol','k+')
-xlabel('Initial Area (mm^2)')
-ylabel('F/k')
-set(gca,'XLim',[0,initialarea(end)+initialarea(1)])
+% % % set(gca,'XLim',[0,initialarea(end)+initialarea(1)],'FontSize',fs_ticks)
+% % % xticks('auto')
+% % % xticklabels({'0','0.5','1','1.5','2','2.5'})
+set(gca,'FontSize',fs_ticks)
+set(gca,'XScale','log');
+xlim([0.1,4])
 xticks('auto')
-xticklabels({'0','0.5','1','1.5','2','2.5'})
+xticklabels('') %xticklabels('auto')
+% xlabel('Initial Area (mm^2)','FontSize',fs_label)
+ylabel('$F/k$','Interpreter','latex','FontSize',fs_label)
 
+for i=1:LN
+    text(initialarea(i)+ispread(i),1.6,groups_Fk{i},'Color',color_Fk(i,:),...
+        'FontSize',fs_groups,'Rotation',90)
+end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% k/b %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 [p_kb,tbl_kb,stats_kb] = anova1(kb,[],'off');
 [c_kb,meanSD_kb,h_kb] = multcompare(stats_kb,'Display','off');
-yticklabels(flip(names))
+% yticklabels(flip(names))
 
 %%% determine compact letter display
 csort_kb = sortrows(c_kb,6);
@@ -119,30 +141,39 @@ samegroups_kb = sortrows(csort_kb(ind,1:2));
 samegroups_addrepeats_kb = sortrows([samegroups_kb ; ...
     samegroups_kb(:,2) , samegroups_kb(:,1)]);
 
-groups_kb = {'--','A','A','BC','A',...
-    'BD','C','D','EHI','E',...
-    'FHJ','EJK','F','D','D',...
-    'F','FIK','--'};
+groups_kb = {'***','A','A','BC','A',...
+    'BD','C','D','EFG','E',...
+    'FHI','EHJ','I','D','D',...
+    'I','GIJ','***'};
 color_kb = [co(end,:);co(1,:);co(1,:);co(2,:);co(1,:);...
     co(2,:);co(3,:);co(4,:);co(5,:);co(5,:);...
     co(6,:);co(5,:);co(7,:);co(4,:);co(4,:);...
     co(7,:);co(7,:);co(end,:)];
 
 %%% boxplot
-subplot(2,2,2)
+subaxis(2,2,2,'sv',psv,'sh',psh,'mb',pmb,'mt',pmt,'ml',pml,'mr',pmr)
 boxplot(kb,'Positions',initialarea,'Colors',color_kb,'BoxStyle','filled',...
     'MedianStyle','target','Symbol','k+')
-xlabel('Initial Area (mm^2)')
-ylabel('k/b')
-set(gca,'XLim',[0,initialarea(end)+initialarea(1)])
+% % % set(gca,'XLim',[0,initialarea(end)+initialarea(1)])
+% % % xticks('auto')
+% % % xticklabels({'0','0.5','1','1.5','2','2.5'})
+set(gca,'FontSize',fs_ticks)
+set(gca,'XScale','log');
+xlim([0.1,4])
 xticks('auto')
-xticklabels({'0','0.5','1','1.5','2','2.5'})
+xticklabels('') %xticklabels('auto')
+% xlabel('Initial Area (mm^2)','FontSize',fs_label)
+ylabel('$k/b$','Interpreter','latex','FontSize',fs_label)
 
+for i=1:LN
+    text(initialarea(i)+ispread(i),5300,groups_kb{i},'Color',color_kb(i,:),...
+        'FontSize',fs_groups,'Rotation',90)
+end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% alpha %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 [p_alpha,tbl_alpha,stats_alpha] = anova1(alpha,[],'off');
 [c_alpha,meanSD_alpha,h_alpha] = multcompare(stats_alpha,'Display','off');
-yticklabels(flip(names))
+% yticklabels(flip(names))
 
 %%% determine compact letter display
 csort_alpha = sortrows(c_alpha,6);
@@ -153,14 +184,39 @@ samegroups_alpha = sortrows(csort_alpha(ind,1:2));
 samegroups_addrepeats_alpha = sortrows([samegroups_alpha ; ...
     samegroups_alpha(:,2) , samegroups_alpha(:,1)]);
 
+groups_alpha = {'ABE','BCD','BCD','BCD','BCD',...
+    'BCD','BCD','BCD','AB','AD',...
+    'BCD','BCD','BCD','CE','CE',...
+    'BCD','C','A'};
+color_alpha = [co(1,:);co(2,:);co(2,:);co(2,:);co(2,:);...
+    co(2,:);co(2,:);co(2,:);co(1,:);co(1,:);...
+    co(2,:);co(2,:);co(2,:);co(3,:);co(3,:);...
+    co(2,:);co(3,:);co(1,:)];
 
+%%% boxplot
+subaxis(2,2,3,'sv',psv,'sh',psh,'mb',pmb,'mt',pmt,'ml',pml,'mr',pmr)
+boxplot(alpha,'Positions',initialarea,'Colors',color_alpha,'BoxStyle','filled',...
+    'MedianStyle','target','Symbol','k+')
+% % % set(gca,'XLim',[0,initialarea(end)+initialarea(1)])
+% % % xticks('auto')
+% % % xticklabels({'0','0.5','1','1.5','2','2.5'})
+set(gca,'FontSize',fs_ticks)
+set(gca,'XScale','log');
+xlim([0.1,4])
+xticks('auto')
+xticklabels('auto')
+xlabel('Initial Area (mm^2)','FontSize',fs_label)
+ylabel('$\alpha$','Interpreter','latex','FontSize',fs_label)
 
-
+for i=1:LN
+    text(initialarea(i)+ispread(i),1.08,groups_alpha{i},'Color',color_alpha(i,:),...
+        'FontSize',fs_groups,'Rotation',90)
+end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% rho0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 [p_rho0,tbl_rho0,stats_rho0] = anova1(rho0,[],'off');
 [c_rho0,meanSD_rho0,h_rho0] = multcompare(stats_rho0,'Display','off');
-yticklabels(flip(names))
+% yticklabels(flip(names))
 
 %%% determine compact letter display
 csort_rho0 = sortrows(c_rho0,6);
@@ -170,3 +226,34 @@ samegroups_rho0 = sortrows(csort_rho0(ind,1:2));
 
 samegroups_addrepeats_rho0 = sortrows([samegroups_rho0 ; ...
     samegroups_rho0(:,2) , samegroups_rho0(:,1)]);
+
+groups_rho0 = {'A','AB','AC','A','A',...
+    'ACD','ACDE','BDF','BFG','FHI'...
+    'BFG','FHI','BEH','BCH','BCH',...
+    'GIJ','BI','J'};
+color_rho0 = [co(1,:);co(1,:);co(1,:);co(1,:);co(1,:);...
+    co(1,:);co(1,:);co(2,:);co(2,:);co(3,:);...
+    co(2,:);co(3,:);co(2,:);co(2,:);co(2,:);...
+    co(4,:);co(2,:);co(4,:)];
+
+%%% boxplot
+subaxis(2,2,4,'sv',psv,'sh',psh,'mb',pmb,'mt',pmt,'ml',pml,'mr',pmr)
+boxplot(rho0,'Positions',initialarea,'Colors',color_rho0,'BoxStyle','filled',...
+    'MedianStyle','target','Symbol','k+')
+% % % set(gca,'XLim',[0,initialarea(end)+initialarea(1)])
+% % % xticks('auto')
+% % % xticklabels({'0','0.5','1','1.5','2','2.5'})
+set(gca,'FontSize',fs_ticks)
+set(gca,'XScale','log');
+xlim([0.1,4])
+xticks('auto')
+xticklabels('auto')
+xlabel('Initial Area (mm^2)','FontSize',fs_label)
+ylabel('$\rho_\mathrm{unstressed}$','Interpreter','latex','FontSize',fs_label)
+
+for i=1:LN
+    text(initialarea(i)+ispread(i),2075,groups_rho0{i},'Color',color_rho0(i,:),...
+        'FontSize',fs_groups,'Rotation',90)
+end
+
+set(gcf,'Units','inches','Position',[2,2,14,7],'PaperPositionMode','auto')
