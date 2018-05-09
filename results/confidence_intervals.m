@@ -8,7 +8,7 @@ names = {'Pos11exp1','Pos14exp7','Pos14exp2','Pos10exp3','Pos14exp6','Pos10exp1'
 LN = length(names);
 
 total_n = 2000;
-percent_holdon = 0.2;
+percent_holdon = 1;%0.2;
 n = percent_holdon * total_n;
 
 xbar = zeros(LN,4);

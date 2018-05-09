@@ -5,6 +5,10 @@ close all;
 names = {'Pos11exp1','Pos14exp7','Pos14exp2','Pos10exp3','Pos14exp6','Pos10exp1',...
     'Pos5exp4','Pos6exp3','Pos7exp4','Pos6exp4','Pos9exp2','Pos9exp3',...
     'Pos9exp1','Pos6','Pos7','Pos1exp2','Pos2exp1','Pos0'};
+initialarea = flipud([2.56514721 ; 2.14046358 ; 1.73434272 ; 1.48820668 ; ...
+    1.11914679 ; 0.8574703 ; 0.680720558 ; 0.636105372 ; 0.596106663 ; ...
+    0.543646694 ; 0.448605372 ; 0.357986829 ; 0.300684401; 0.259265238 ; ...
+    0.242155217 ; 0.234988378 ; 0.234762397 ; 0.144757231]);
 
 LN = length(names);
 
@@ -57,6 +61,12 @@ co = [0    0.4470    0.7410
     0.3010    0.7450    0.9330
     0.6350    0.0780    0.1840];
 
+fs_label = 20;
+fs_ticks = 16;
+fs_text = 16;
+lw = 1.5;
+ms = 8;
+
 %% correlation
 corr_Fkkb = squeeze(correlation(1,2,:));
 corr_Fkalpha = squeeze(correlation(1,3,:));
@@ -71,18 +81,43 @@ corrTable = table([mean(corr_Fkkb);mean(corr_Fkalpha);mean(corr_Fkrho0)],...
     'RowNames',{'kb','alpha','rho0'},'VariableNames',{'Fk','kb','alpha'})
 
 hold on
-plot(1:LN,corr_Fkkb,'-o','Color',co(1,:))
-plot(1:LN,corr_Fkalpha,'-+','Color',co(2,:))
-plot(1:LN,corr_Fkrho0,'-d','Color',co(3,:))
-plot(1:LN,corr_kbalpha,'-s','Color',co(4,:))
-plot(1:LN,corr_kbrho0,'-x','Color',co(5,:))
-plot(1:LN,corr_alpharho0,'-*','Color',co(6,:))
+line([0,3],[0,0],'LineStyle','--','Color',[0.5,0.5,0.5])
+line([0,3],[0.5,0.5],'LineStyle','--','Color',[0.5,0.5,0.5])
+line([0,3],[-0.5,-0.5],'LineStyle','--','Color',[0.5,0.5,0.5])
+h1 = plot(initialarea,corr_Fkkb,'-o','Color',co(1,:),'LineWidth',lw,'MarkerSize',ms);
+h2 = plot(initialarea,corr_Fkalpha,'-+','Color',co(2,:),'LineWidth',lw,'MarkerSize',ms);
+h3 = plot(initialarea,corr_Fkrho0,'-d','Color',co(3,:),'LineWidth',lw,'MarkerSize',ms);
+h4 = plot(initialarea,corr_kbalpha,'-s','Color',co(4,:),'LineWidth',lw,'MarkerSize',ms);
+h5 = plot(initialarea,corr_kbrho0,'-x','Color',co(5,:),'LineWidth',lw,'MarkerSize',ms);
+h6 = plot(initialarea,corr_alpharho0,'-*','Color',co(6,:),'LineWidth',lw,'MarkerSize',ms);
 hold off
-xlabel('Explant #')
-ylabel('correlation')
-legend('Fk and kb','Fk and alpha','Fk and rho0','kb and alpha',...
-    'kb and rho0','alpha and rho0','Orientation','horizontal',...
-    'Location','NorthOutside')
+
+xval = 2.65;
+text(xval,mean(corr_Fkkb),num2str(mean(corr_Fkkb),2),'Color',co(1,:),...
+    'FontSize',fs_text)
+text(xval,mean(corr_Fkalpha)-0.025,num2str(mean(corr_Fkalpha),2),'Color',co(2,:),...
+    'FontSize',fs_text)
+text(xval,mean(corr_Fkrho0)+0.025,num2str(mean(corr_Fkrho0),2),'Color',co(3,:),...
+    'FontSize',fs_text)
+text(xval,mean(corr_kbalpha)+0.0125,num2str(mean(corr_kbalpha),2),'Color',co(4,:),...
+    'FontSize',fs_text)
+text(xval,mean(corr_kbrho0),num2str(mean(corr_kbrho0),2),'Color',co(5,:),...
+    'FontSize',fs_text)
+text(xval,mean(corr_alpharho0)+0.0025,num2str(mean(corr_alpharho0),2),'Color',co(6,:),...
+    'FontSize',fs_text)
+    
+box on
+hselect = [h1,h2,h3,h4,h5,h6];
+legend(hselect,{'$F/k$ and $k/b$','$F/k$ and $\alpha$',...
+    '$F/k$ and $\rho_\mathrm{unstressed}$','$k/b$ and $\alpha$',...
+    '$k/b$ and $\rho_\mathrm{unstressed}$','$\alpha$ and $\rho_\mathrm{unstressed}$'},...
+    'Location','EastOutside','Interpreter','latex',...
+    'Position',[0.76476 0.3968 0.2320 0.2623])
+ylim([-1,1])
+%xlim([0,2.75])
+set(gca,'FontSize',fs_ticks,'Position',[0.13 0.13 0.6245 0.8585])
+xlabel('Initial Area (mm^2)','FontSize',fs_label)
+ylabel('Correlation Coefficient','FontSize',fs_label)
 set(gcf,'Position',[440 378 660 420])
 
 %% covariance
