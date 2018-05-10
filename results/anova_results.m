@@ -205,7 +205,7 @@ set(gca,'XScale','log');
 xlim([0.1,4])
 xticks('auto')
 xticklabels('auto')
-xlabel('Initial Area (mm^2)','FontSize',fs_label)
+xlabel('Initial Area (mm$^2$)','Interpreter','latex','FontSize',fs_label)
 ylabel('$\alpha$','Interpreter','latex','FontSize',fs_label)
 
 for i=1:LN
@@ -248,7 +248,7 @@ set(gca,'XScale','log');
 xlim([0.1,4])
 xticks('auto')
 xticklabels('auto')
-xlabel('Initial Area (mm^2)','FontSize',fs_label)
+xlabel('Initial Area (mm$^2$)','Interpreter','latex','FontSize',fs_label)
 ylabel('$\rho_\mathrm{unstressed}$','Interpreter','latex','FontSize',fs_label)
 
 for i=1:LN
