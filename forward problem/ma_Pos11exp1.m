@@ -1,15 +1,16 @@
 clc
 clear variables
 close all
-addpath mylib
-addpath mylib/shapes
-addpath mylib/growthfunctions
+addpath ../
+addpath ../mylib
+addpath ../mylib/shapes
+addpath ../mylib/growthfunctions
 
 global time figureson rho0 number_nodes exp_px exp_scale filestring;
 global growthfunction;
 
 % location of experimental data
-filestring = '../../../../../Desktop/RESEARCH!!!/researchdata/experimental_data/100714 Animal cap x0.8 Scion x2_0/Pos11_exp1/';
+filestring = '../../../../Desktop/RESEARCH!!!/researchdata/experimental_data/100714 Animal cap x0.8 Scion x2_0/Pos11_exp1/';
 
 figureson = 1; %%% figures on? 1=yes, 0=no
 paramestim = 0; %%% parameter estimation? 1=yes, 0=no
@@ -17,10 +18,15 @@ paramestim = 0; %%% parameter estimation? 1=yes, 0=no
 %%%------------------------- model parameters --------------------------%%%
 %%%
 growthfunction = 'logistic_masslimited';
-param.Fk   = 41/60; %0.683
-param.kb   = 500;
-param.alpha = 1;
-rho0 = 1500;
+param.Fk   = 0.2793; %0.683
+param.kb   = 824;
+param.alpha = 0.1562;
+rho0 = 1852;
+
+% param.Fk   = 41/60; %0.683
+% param.kb   = 500;
+% param.alpha = 1;
+% rho0 = 1500;
 
 % param.Fk   = 1.15608;
 % param.kb   = 285;
