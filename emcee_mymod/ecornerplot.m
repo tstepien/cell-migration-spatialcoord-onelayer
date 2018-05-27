@@ -1,4 +1,4 @@
-function H=ecornerplot(m,varargin)
+function H=ecornerplot(m,minparam,avgval,varargin)
 %% Corner plot with allowance for effective sample size
 %
 % ecornerplot(m,[parameter,value])
@@ -221,6 +221,9 @@ for r=1:M %%% add dashed lines on 2D projections
             hold(h,'on')
             line([pLvert,pLvert],ypts,'Color','k','LineStyle','--','Parent',h)
             line(xpts,[pLhoriz,pLhoriz],'Color','k','LineStyle','--','Parent',h)
+            co = [0    0.4470    0.7410 ; 0.8500    0.3250    0.0980 ; 0.9290    0.6940    0.1250];
+            scatter(minparam(c,:),minparam(r,:),50,co,'*','Parent',h)
+            scatter(avgval(c),avgval(r),50,'o','filled','MarkerFaceColor',[0.4940    0.1840    0.5560],'Parent',h)
             hold(h,'off')
         end
     end

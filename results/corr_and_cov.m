@@ -84,12 +84,18 @@ hold on
 line([0,3],[0,0],'LineStyle','--','Color',[0.5,0.5,0.5])
 line([0,3],[0.5,0.5],'LineStyle','--','Color',[0.5,0.5,0.5])
 line([0,3],[-0.5,-0.5],'LineStyle','--','Color',[0.5,0.5,0.5])
-h1 = plot(initialarea,corr_Fkkb,'-o','Color',co(1,:),'LineWidth',lw,'MarkerSize',ms);
-h2 = plot(initialarea,corr_Fkalpha,'-+','Color',co(2,:),'LineWidth',lw,'MarkerSize',ms);
-h3 = plot(initialarea,corr_Fkrho0,'-d','Color',co(3,:),'LineWidth',lw,'MarkerSize',ms);
-h4 = plot(initialarea,corr_kbalpha,'-s','Color',co(4,:),'LineWidth',lw,'MarkerSize',ms);
-h5 = plot(initialarea,corr_kbrho0,'-x','Color',co(5,:),'LineWidth',lw,'MarkerSize',ms);
-h6 = plot(initialarea,corr_alpharho0,'-*','Color',co(6,:),'LineWidth',lw,'MarkerSize',ms);
+h1 = plot(initialarea,corr_Fkkb,'-o','Color',co(1,:),'LineWidth',lw,...
+    'MarkerSize',ms,'MarkerFaceColor','auto');
+h2 = plot(initialarea,corr_Fkalpha,'-+','Color',co(2,:),'LineWidth',lw,...
+    'MarkerSize',ms,'MarkerFaceColor','auto');
+h3 = plot(initialarea,corr_Fkrho0,'-d','Color',co(3,:),'LineWidth',lw,...
+    'MarkerSize',ms,'MarkerFaceColor','auto');
+h4 = plot(initialarea,corr_kbalpha,'-s','Color',co(4,:),'LineWidth',lw,...
+    'MarkerSize',ms,'MarkerFaceColor','auto');
+h5 = plot(initialarea,corr_kbrho0,'-x','Color',co(5,:),'LineWidth',lw,...
+    'MarkerSize',ms,'MarkerFaceColor','auto');
+h6 = plot(initialarea,corr_alpharho0,'-*','Color',co(6,:),'LineWidth',lw,...
+    'MarkerSize',ms,'MarkerFaceColor','auto');
 hold off
 
 xval = 2.65;

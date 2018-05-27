@@ -14,7 +14,7 @@ bothfigstogether = 'no'; % yes - both figures go together as A and B
 
 frameIncrement = 5;
 
-filestring2 = strcat('../',filestring);
+filestring2 = filestring;%strcat('../',filestring);
 
 if time.end == ((120-1)*5)/60
     simt = 1:19:115;

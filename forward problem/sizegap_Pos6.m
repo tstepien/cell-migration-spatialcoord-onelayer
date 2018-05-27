@@ -1,15 +1,16 @@
 clc
-clear all
+clear variables
 close all
-addpath mylib
-addpath mylib/shapes
-addpath mylib/growthfunctions
+addpath ../
+addpath ../mylib
+addpath ../mylib/shapes
+addpath ../mylib/growthfunctions
 
 global time figureson rho0 number_nodes exp_px exp_scale filestring;
 global growthfunction;
 
 % location of experimental data
-filestring = '../../../../../RESEARCH!!!/researchdata/experimental_data/SizeGapData/2014_02_21/Pos6/';
+filestring = '../../../../Desktop/RESEARCH!!!/researchdata/experimental_data/SizeGapData/2014_02_21/Pos6/';
 
 figureson = 1; %%% figures on? 1=yes, 0=no
 paramestim = 0; %%% parameter estimation? 1=yes, 0=no
@@ -17,10 +18,22 @@ paramestim = 0; %%% parameter estimation? 1=yes, 0=no
 %%%------------------------- model parameters --------------------------%%%
 %%%
 growthfunction = 'logistic_masslimited';
-param.Fk   = 0.43159;
-param.kb   = 910;
-param.alpha = 2.50122;
-rho0 = 2931;
+%%% min value
+% param.Fk   = 0.9568;
+% param.kb   = 573;
+% param.alpha = 0.8960;
+% rho0 = 1515;
+
+%%% average value
+param.Fk   = 0.4907;
+param.kb   = 2365;
+param.alpha = 0.4439;
+rho0 = 1496;
+
+% param.Fk   = 0.43159;
+% param.kb   = 910;
+% param.alpha = 2.50122;
+% rho0 = 2931;
 % scaling    = 10^6;
 % rho0 = 0.001*scaling; %cells/mm^2
 

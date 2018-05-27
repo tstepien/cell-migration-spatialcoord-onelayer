@@ -1,15 +1,16 @@
 clc
-clear all
+clear variables
 close all
-addpath mylib
-addpath mylib/shapes
-addpath mylib/growthfunctions
+addpath ../
+addpath ../mylib
+addpath ../mylib/shapes
+addpath ../mylib/growthfunctions
 
 global time figureson rho0 number_nodes exp_px exp_scale filestring;
 global growthfunction;
 
 % location of experimental data
-filestring = '../../../../../RESEARCH!!!/researchdata/experimental_data/100714 Animal cap x0.8 Scion x2_0/Pos2_exp1/';
+filestring = '../../../../Desktop/RESEARCH!!!/researchdata/experimental_data/100714 Animal cap x0.8 Scion x2_0/Pos2_exp1/';
 
 figureson = 1; %%% figures on? 1=yes, 0=no
 paramestim = 0; %%% parameter estimation? 1=yes, 0=no
@@ -17,10 +18,23 @@ paramestim = 0; %%% parameter estimation? 1=yes, 0=no
 %%%------------------------- model parameters --------------------------%%%
 %%%
 growthfunction = 'logistic_masslimited';
-param.Fk   = 0.16441;
-param.kb   = 11610;
-param.alpha = 1.49698;
-rho0 = 3952;
+%%% min value
+param.Fk   = 0.9329;
+param.kb   = 838;
+param.alpha = 0.9668;
+rho0 = 1610;
+
+%%% average value
+% param.Fk   = 0.5560;
+% param.kb   = 2566;
+% param.alpha = 0.4411;
+% rho0 = 1477;
+
+
+% param.Fk   = 0.16441;
+% param.kb   = 11610;
+% param.alpha = 1.49698;
+% rho0 = 3952;
 % scaling    = 10^6;
 % rho0 = 0.001*scaling; %cells/mm^2
 
