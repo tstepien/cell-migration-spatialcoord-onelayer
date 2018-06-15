@@ -2,23 +2,35 @@ addpath ../mylib
 
 global g;
 
-%%% grayscale conversion (luminance): 0.299r + 0.587g + 0.114b
-gsc = [0.299 0.587 0.114];
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% figure options %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 imagetype = 'paper'; % this is 'paper' or 'presentation'
 bworcolor = 'color'; % this is 'bw' or 'color'
 jetcolormap = 0; % this is 1-yes or 0-no
 
-bothfigstogether = 'no'; % yes - both figures go together as A and B
-                          % no - figures are separate, so A fills up all
+numberoftimepts = 3; % this code is currently set up for 3 or 7 time points
+timelabels = 'hr'; % min - labels on the top given in minutes
+                    % hr - labels on the top given in hours
 
+bothfigstogether = 'yes'; % yes - both figures are in the same window/file
+                         % no - figures are separate windows/files
+spaceforcolorbar = 'yes'; % yes - leave space for colorbar in A
+                         % no - don't leave space for colorbar in A
+                         %  (figures are separate, so A fills up all space)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 frameIncrement = 5;
 
 filestring2 = filestring;%strcat('../',filestring);
 
-if time.end == ((120-1)*5)/60
+%%% time.end == ((120-1)*5)/60
+if numberoftimepts==7
     simt = 1:19:115;
+elseif numberoftimepts==3
+    simt = 1:57:115;
 end
+
+%%% grayscale conversion (luminance): 0.299r + 0.587g + 0.114b
+gsc = [0.299 0.587 0.114];
 
 %%%%%%%%%%%%%%%%%%%%%%%% load experimental images %%%%%%%%%%%%%%%%%%%%%%%%%
 j = 0;
@@ -104,20 +116,42 @@ end
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% figures %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+load('MyColorMap_hot');
 
+if strcmp(bothfigstogether,'yes')==1
+    rowsinfig = 2;
+elseif strcmp(bothfigstogether,'no')==1
+    rowsinfig = 1;
+end
+if numberoftimepts==7
+    spacing_horiz = 0.01;
+    spacing_vert = 0.01;
+    marginright = 0.05;
+elseif numberoftimepts==3
+    spacing_horiz = 0.02;
+    spacing_vert = 0.01;
+    marginright = 0.11;
+end
 
 %%% actual image and boundaries
 figure
 for i = 1:length(simt)
-    if strcmp(bothfigstogether,'yes')==1
-        subaxis(1,length(simt),i,'Spacing', 0.01, 'Padding', 0, ...
-            'PaddingTop',0.13, 'Margin', 0,'MarginRight',0.05,'MarginBottom',0.01)
-    elseif strcmp(bothfigstogether,'no')==1
-        subaxis(1,length(simt),i,'Spacing', 0.01, 'Padding', 0, ...
-            'PaddingTop',0.13, 'Margin', 0,'MarginRight',0,'MarginBottom',0.01)
+    if strcmp(spaceforcolorbar,'yes')==1
+        marginright2 = marginright;
+    elseif strcmp(spaceforcolorbar,'no')==1
+        marginright2 = 0;
     end
-    image(expimg{i},'XData',[g.xmin g.xmax],'YData',[g.ymin g.ymax])
-    colormap(gray(256))
+    if strcmp(bothfigstogether,'yes')==1
+        ax1 = subaxis(rowsinfig,length(simt),i,'SpacingHoriz', spacing_horiz, ...
+            'SpacingVert', spacing_vert, 'Padding', 0, 'PaddingTop',0.065, ...
+            'Margin', 0, 'MarginRight',marginright2,'MarginBottom',0.001);
+    elseif strcmp(bothfigstogether,'no')==1
+        ax1 = subaxis(rowsinfig,length(simt),i,'SpacingHoriz', spacing_horiz, ...
+            'SpacingVert', spacing_vert, 'Padding', 0, 'PaddingTop',0.13, ...
+            'Margin', 0, 'MarginRight',marginright2,'MarginBottom',0.01);
+    end
+    image(expimg{i},'XData',[g.xmin g.xmax],'YData',[g.ymin g.ymax]);
+    colormap(ax1,gray(256))
     hold on
     
     if strcmp(imagetype,'paper')==1
@@ -145,8 +179,13 @@ for i = 1:length(simt)
     set(gca,'YTick',[])
     
 %     title([num2str((simt(i)-1)*5),' min'],'FontSize',14,'FontWeight','bold');
-    title([num2str((simt(i)-1)*5),' min'],'FontSize',24,'FontWeight','bold',...
-        'Units','normalized','Position', [0.5,1]);
+    if strcmp(timelabels,'min')==1
+        title([num2str((simt(i)-1)*5),' min'],'FontSize',24,...
+            'FontWeight','bold','Units','normalized','Position', [0.5,1]);
+    elseif strcmp(timelabels,'hr')==1
+        title([num2str((simt(i)-1)*5/60),' hr'],'FontSize',24,...
+            'FontWeight','bold','Units','normalized','Position', [0.5,1]);
+    end
     
 %     if i==1
 %         title('\bf A','FontSize',14,'Units','normalized','Position', [0.05 1.01]);
@@ -162,16 +201,36 @@ end
 %     'String',{'A'},'FontWeight','bold','FontSize',22,...
 %     'FontName','Helvetica','FitBoxToText','off','LineStyle','none');
 
-set(gcf,'Position',[100 700 200*length(simt) 200],'PaperPositionMode','auto');
+if numberoftimepts==7
+    widthchange = 0;
+elseif numberoftimepts==3
+    widthchange = 32;
+end
+
+if strcmp(bothfigstogether,'no')==1
+    set(gcf,'Position',[100 700 200*length(simt)+widthchange 200],...
+        'PaperPositionMode','auto');
+end
 
 
 
 %%% density ratio differences
-figure
+if strcmp(bothfigstogether,'no')==1
+    figure
+end
 for i = 1:length(simt)
     difference{i}(difference{i}==0) = NaN;
-    subaxis(1,length(simt),i,'Spacing', 0.01, 'Padding', 0, ...
-        'PaddingTop',0.07, 'Margin', 0,'MarginRight',0.05,'MarginBottom',0.06)
+    if strcmp(bothfigstogether,'no')==1
+        ax2 = subaxis(rowsinfig,length(simt),i+length(simt)*(rowsinfig-1),...
+            'SpacingHoriz', spacing_horiz, 'SpacingVert', spacing_vert, ...
+            'Padding', 0, 'PaddingTop',0.07, ...
+            'Margin', 0,'MarginRight',marginright,'MarginBottom',0.06);
+    elseif strcmp(bothfigstogether,'yes')==1
+        ax2 = subaxis(rowsinfig,length(simt),i+length(simt)*(rowsinfig-1),...
+            'SpacingHoriz', spacing_horiz, 'SpacingVert', spacing_vert, ...
+            'Padding', 0, 'PaddingTop',0.045, ...
+            'Margin', 0,'MarginRight',marginright,'MarginBottom',0.03);
+    end
     
     if strcmp(bworcolor,'color')==1
         if jetcolormap == 1
@@ -179,17 +238,29 @@ for i = 1:length(simt)
             imagescnan(difference{i})%[mindiff maxdiff])
         elseif jetcolormap == 0
             imagescnan(abs(difference{i}),[0,max(-mindiff,maxdiff)])
-            colormap(flipud(pmkmp(64,'LinLhot')))
+            colormap(ax2,flipud(bone))%flipud(pmkmp(64,'LinLhot')))
         end
     elseif strcmp(bworcolor,'bw')==1
         imagescnan(abs(difference{i}),[0,max(-mindiff,maxdiff)])
         load('colormap_grayscale')
-        colormap(cmap)
+        colormap(ax2,cmap)
     end
     
     if i==length(simt)
         h = colorbar;
-        set(h, 'Location','East','Position',[.96,.06,.015,.87])
+        if strcmp(bothfigstogether,'no')==1
+            if numberoftimepts==7
+                set(h, 'Location','East','Position',[0.96,0.06,0.015,0.87])
+            elseif numberoftimepts==3
+                set(h, 'Location','East','Position',[0.91 0.06 0.0335 0.87])
+            end
+        elseif strcmp(bothfigstogether,'yes')==1
+            if numberoftimepts==7
+                set(h, 'Location','East','Position',[0.96,0.03,0.015,0.435])
+            elseif numberoftimepts==3
+                set(h, 'Location','East','Position',[0.91 0.03 0.0335 0.435])
+            end
+        end
     end
     
     set(gca,'XTick',[],'YTick',[],'FontSize',16)
@@ -199,4 +270,10 @@ end
 %     'String',{'B'},'FontWeight','bold','FontSize',22,...
 %     'FontName','Helvetica','FitBoxToText','off','LineStyle','none');
 
-set(gcf,'Position',[100 300 200*length(simt) 200],'PaperPositionMode','auto');
+if strcmp(bothfigstogether,'no')==1
+    set(gcf,'Position',[100 300 200*length(simt)+widthchange 200],...
+        'PaperPositionMode','auto');
+elseif strcmp(bothfigstogether,'yes')==1
+    set(gcf,'Position',[100 300 200*length(simt)+widthchange 400],...
+        'PaperPositionMode','auto');
+end

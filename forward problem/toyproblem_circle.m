@@ -1,9 +1,9 @@
 clc
 clear variables
 close all
-addpath mylib
-addpath mylib/shapes
-addpath mylib/growthfunctions
+addpath ../mylib
+addpath ../mylib/shapes
+addpath ../mylib/growthfunctions
 
 global g time Phi_init figureson growthfunction;
 
@@ -18,11 +18,11 @@ param.alpha = 0.75;
 param.rho0 = 2000;
 
 %%%-------------------------- time parameters --------------------------%%%
-time.end = (120-1)*(5/60); %%% how long simulation runs in hours
-time.exp_step = 5/60;%5/60; %%% how many hours between recording a curve
+time.end = 10;%(120-1)*(5/60); %%% how long simulation runs in hours
+time.exp_step = 2;%5/60; %%% how many hours between recording a curve
 
 %%%--------------------------- generate mesh ---------------------------%%%
-number_nodes = 100;
+number_nodes = 35;
 exp_px = [500,500]; %size of experimental window in pixels
 exp_scale = .177; %pixels per micron scale
 
@@ -31,7 +31,7 @@ g = mesh_generation(number_nodes,exp_px,exp_scale);
 
 %%%------------------- initial cell boundary shapes --------------------%%%
 %%%---------------------- (initialize level sets) ----------------------%%%
-Phi_init = circleshape(750);
+Phi_init = circleshape(800);
 
 %%%---------------------------------------------------------------------%%%
 [density,curve,area,velocity,Phi,curvature,plot_times,newmassadded] = onelayer_toy(param);

@@ -43,7 +43,11 @@ end
 
 
 %%%--------------------------- density plots ---------------------------%%%
-mid = 51;%ceil(length(g.y)/2);
+if length(g.y)==100
+    mid = 51;
+else
+    mid = ceil(length(g.y)/2);
+end
 pos = [];
 dens = [];
 for i = 1:length(g.x)-1

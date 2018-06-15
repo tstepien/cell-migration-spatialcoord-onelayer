@@ -25,10 +25,29 @@ growthfunction = 'logistic_masslimited';
 % rho0 = 1610;
 
 %%% average value
-param.Fk   = 0.5560;
-param.kb   = 2566;
-param.alpha = 0.4411;
-rho0 = 1477;
+% param.Fk   = 0.5560;
+% param.kb   = 2566;
+% param.alpha = 0.4411;
+% rho0 = 1477;
+
+%%% parameters from region Ia
+% param.Fk   = 0.6626;
+% param.kb   = 560;
+% param.alpha = 0.8972;
+% rho0 = 1197;
+
+%%% parameters from region Ib
+% param.Fk   = 0.7799;
+% param.kb   = 742;
+% param.alpha = 0.8622;
+% rho0 = 1443;
+
+%%% parameters from region II
+param.Fk   = 0.9568;
+param.kb   = 573;
+param.alpha = 0.8960;
+rho0 = 1515;
+
 
 % param.Fk   = 89/120; %0.7416
 % param.kb   = 1250;

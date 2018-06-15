@@ -121,7 +121,8 @@ legend(hselect,{'$F/k$ and $k/b$','$F/k$ and $\alpha$',...
     'Position',[0.76476 0.3968 0.2320 0.2623])
 ylim([-1,1])
 %xlim([0,2.75])
-set(gca,'FontSize',fs_ticks,'Position',[0.13 0.13 0.6245 0.8585])
+set(gca,'YTick',-1:0.25:1,'FontSize',fs_ticks,...
+    'Position',[0.13 0.13 0.6245 0.8585])
 xlabel('Initial Area (mm$^2$)','Interpreter','latex','FontSize',fs_label)
 ylabel('Correlation Coefficient','Interpreter','latex','FontSize',fs_label)
 set(gcf,'Position',[440 378 660 420])
