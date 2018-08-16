@@ -2,7 +2,7 @@ clear variables;
 clc;
 close all;
 
-load(strcat('emceeinit_2000samples_','Pos6exp3','.mat'))
+load(strcat('emceeinit_10000samples_','Pos6exp3','.mat'))
 
 numpts_alpha = 5;
 numpts_rho0 = 5;

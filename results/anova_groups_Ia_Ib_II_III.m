@@ -2,6 +2,9 @@ clear variables;
 clc;
 close all;
 
+%%% NOTE: for Tukey's comparison, the "c" matrix outputted has the p-value
+%%% in the 6th column (p-value smaller than alpha -> mean differs)
+
 names = {'Pos11exp1','Pos14exp7','Pos14exp2','Pos10exp3','Pos14exp6','Pos10exp1',...
     'Pos5exp4','Pos6exp3','Pos7exp4','Pos6exp4','Pos9exp2','Pos9exp3',...
     'Pos9exp1','Pos6','Pos7','Pos1exp2','Pos2exp1','Pos0'};
@@ -12,7 +15,7 @@ initialarea = flipud([2.56514721 ; 2.14046358 ; 1.73434272 ; 1.48820668 ; ...
 
 LN = length(names);
 
-total_n = 2000;
+total_n = 10000;
 percent_holdon = 1;
 n = percent_holdon * total_n;
 
@@ -27,7 +30,7 @@ alpha = zeros(n,LN);
 rho0 = zeros(n,LN);
 
 for i = 1:length(names)
-    load(strcat('emceeinit_2000samples_',names{i},'.mat'))
+    load(strcat('emceeinit_10000samples_',names{i},'.mat'))
     
     [sortedValues,sortIndex] = sort(minquant); %%% sort minquant vector
     minIndex = sortIndex(1:n); %%% hold on to indices of smallest n errors
@@ -73,6 +76,7 @@ co = [
     0.4660    0.6740    0.1880; ...
     1         0.8       0.6; ...
     0         0.4       0; ...
+    0.8       0.8       1; ...
     0.4940    0.1840    0.5560; ...
     1         1         0.4; ...
     0         0         0];
@@ -142,7 +146,7 @@ text(4.025,3697+80,'***','FontSize',fs_groups)
 [p_alpha,tbl_alpha,stats_alpha] = anova1(alpha,groups,'off');
 [c_alpha,meanSD_alpha,h_alpha] = multcompare(stats_alpha,'Display','off');
 
-color_alpha = [co(9,:);co(10,:);co(9,:);co(10,:)];
+color_alpha = [co(9,:);co(10,:);co(11,:);co(11,:)];
 
 %%% boxplot
 subaxis(2,2,3,'sv',psv,'sh',psh,'mb',pmb,'mt',pmt,'ml',pml,'mr',pmr)
@@ -156,16 +160,16 @@ end
 set(gca,'FontSize',fs_ticks)
 ylabel('$\alpha$','Interpreter','latex','FontSize',fs_label)
 
-text(1.025,0.715+0.04,'AB','FontSize',fs_groups)
-text(2.025,0.7132+0.04,'B','FontSize',fs_groups)
-text(3.025,0.6849+0.04,'A','FontSize',fs_groups)
-text(4.025,0.713+0.04,'B','FontSize',fs_groups)
+text(1.025,0.715+0.04,'A','FontSize',fs_groups)
+text(2.025,0.7132+0.04,'A','FontSize',fs_groups)
+text(3.025,0.6849+0.04,'***','FontSize',fs_groups)
+text(4.025,0.713+0.04,'***','FontSize',fs_groups)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% rho0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 [p_rho0,tbl_rho0,stats_rho0] = anova1(rho0,groups,'off');
 [c_rho0,meanSD_rho0,h_rho0] = multcompare(stats_rho0,'Display','off');
 
-color_rho0 = [co(11,:);co(12,:);co(12,:);co(13,:)];
+color_rho0 = [co(12,:);co(13,:);co(13,:);co(14,:)];
 
 %%% boxplot
 subaxis(2,2,4,'sv',psv,'sh',psh,'mb',pmb,'mt',pmt,'ml',pml,'mr',pmr)

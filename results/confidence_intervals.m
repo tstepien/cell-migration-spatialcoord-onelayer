@@ -7,7 +7,7 @@ names = {'Pos11exp1','Pos14exp7','Pos14exp2','Pos10exp3','Pos14exp6','Pos10exp1'
 
 LN = length(names);
 
-total_n = 2000;
+total_n = 10000;
 percent_holdon = 1;%0.2;
 n = percent_holdon * total_n;
 
@@ -25,7 +25,7 @@ alpha = zeros(n,LN);
 rho0 = zeros(n,LN);
 
 for i = 1:length(names)
-    load(strcat('emceeinit_2000samples_',names{i},'.mat'))
+    load(strcat('emceeinit_10000samples_',names{i},'.mat'))
     
     [sortedValues,sortIndex] = sort(minquant); %%% sort minquant vector
     minIndex = sortIndex(1:n); %%% hold on to indices of smallest n errors

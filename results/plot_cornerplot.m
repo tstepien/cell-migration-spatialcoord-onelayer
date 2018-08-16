@@ -9,14 +9,15 @@ names = {'Pos6exp3'}; %%% this is the explant used in the paper
 % names = {'Pos11exp1','Pos14exp7','Pos14exp2','Pos10exp3','Pos14exp6'};
 
 LN = length(names);
+numparametersets = 10000;
 
-p = zeros(4,2000*LN);
+p = zeros(4,numparametersets*LN);
 for i=1:LN
-    load(strcat('emceeinit_2000samples_',names{i},'.mat'))
-    p(:,(i-1)*2000+1:i*2000) = paramval;
+    load(strcat('emceeinit_10000samples_',names{i},'.mat'))
+    p(:,(i-1)*numparametersets+1:i*numparametersets) = paramval;
 end
 
-numkeep = 3;
+numkeep = 3; %number to keep for scatter plot
 [sortedValues,sortIndex] = sort(minquant);
 minIndex = sortIndex(1:numkeep);
 

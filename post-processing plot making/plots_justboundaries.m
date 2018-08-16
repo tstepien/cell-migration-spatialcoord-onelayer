@@ -8,7 +8,7 @@ gsc = [0.299 0.587 0.114];
 imagetype = 'paper'; % this is 'paper' or 'presentation'
 bworcolor = 'color'; % this is 'bw' or 'color'
 
-filestring2 = strcat('../',filestring);
+filestring2 = filestring;%strcat('../',filestring);
 
 if time.end == ((120-1)*5)/60
     simt = 1:19:115;

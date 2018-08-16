@@ -1,6 +1,6 @@
 clear variables;
 clc;
-close all;
+% close all;
 
 names = {'Pos11exp1','Pos14exp7','Pos14exp2','Pos10exp3','Pos14exp6','Pos10exp1',...
     'Pos5exp4','Pos6exp3','Pos7exp4','Pos6exp4','Pos9exp2','Pos9exp3',...
@@ -12,8 +12,8 @@ initialarea = flipud([2.56514721 ; 2.14046358 ; 1.73434272 ; 1.48820668 ; ...
 
 LN = length(names);
 
-total_n = 2000;
-percent_holdon = 0.2;
+total_n = 10000;
+percent_holdon = 0.2;%0.2;
 n = percent_holdon * total_n;
 
 Fk = zeros(n,LN);
@@ -31,7 +31,7 @@ cov_kbrho0 = zeros(LN,1);
 cov_alpharho0 = zeros(LN,1);
 
 for i = 1:length(names)
-    load(strcat('emceeinit_2000samples_',names{i},'.mat'))
+    load(strcat('emceeinit_10000samples_',names{i},'.mat'))
     
     [sortedValues,sortIndex] = sort(minquant); %%% sort minquant vector
     minIndex = sortIndex(1:n); %%% hold on to indices of smallest n errors
