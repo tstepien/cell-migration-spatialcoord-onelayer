@@ -1,15 +1,16 @@
 clc
-clear all
+clear variables
 close all
-addpath mylib
-addpath mylib/shapes
-addpath mylib/growthfunctions
+addpath ../
+addpath ../mylib
+addpath ../mylib/shapes
+addpath ../mylib/growthfunctions
 
 global time figureson rho0 number_nodes exp_px exp_scale filestring;
 global growthfunction;
 
 % location of experimental data
-filestring = '../../../../../RESEARCH!!!/researchdata/experimental_data/100714 Animal cap x0.8 Scion x2_0/Pos7_exp4/';
+filestring = '../../../../Desktop/RESEARCH!!!/researchdata/experimental_data/100714 Animal cap x0.8 Scion x2_0/Pos7_exp4/';
 
 figureson = 1; %%% figures on? 1=yes, 0=no
 % paramestim = 0; %%% parameter estimation? 1=yes, 0=no
@@ -17,10 +18,16 @@ figureson = 1; %%% figures on? 1=yes, 0=no
 %%%------------------------- model parameters --------------------------%%%
 %%%
 growthfunction = 'logistic_masslimited';
-param.Fk   = 0.723763800561964;
-param.kb   = 400.625030454066;
-param.alpha = 3.77613822553257;
-rho0 = 1397.40042437005;
+% param.Fk   = 0.723763800561964;
+% param.kb   = 400.625030454066;
+% param.alpha = 3.77613822553257;
+% rho0 = 1397.40042437005;
+
+%%% min value (from Pos6exp3)
+param.Fk   = 0.7613;
+param.kb   = 721;
+param.alpha = 0.9786;
+rho0 = 1405;
 
 %%%-------------------------- time parameters --------------------------%%%
 time.end = (120-1)*(5/60); %%% how long simulation runs in hours

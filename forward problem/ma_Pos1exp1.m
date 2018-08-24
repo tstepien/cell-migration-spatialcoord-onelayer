@@ -19,10 +19,10 @@ figureson = 1; %%% figures on? 1=yes, 0=no
 %%%
 growthfunction = 'logistic_masslimited';
 %%% min value (parameters from Explant #17)
-% param.Fk   = 0.9329;
-% param.kb   = 838;
-% param.alpha = 0.9668;
-% rho0 = 1610;
+param.Fk   = 0.9329;
+param.kb   = 838;
+param.alpha = 0.9668;
+rho0 = 1610;
 
 %%% average value
 % param.Fk   = 0.5560;
@@ -43,10 +43,10 @@ growthfunction = 'logistic_masslimited';
 % rho0 = 1405;
 
 %%% parameters from region II (parameters from Explant #14)
-param.Fk   = 0.8376;
-param.kb   = 646;
-param.alpha = 0.9474;
-rho0 = 1725;
+% param.Fk   = 0.8376;
+% param.kb   = 646;
+% param.alpha = 0.9474;
+% rho0 = 1725;
 
 
 % param.Fk   = 89/120; %0.7416

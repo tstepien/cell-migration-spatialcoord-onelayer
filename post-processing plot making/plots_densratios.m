@@ -73,8 +73,10 @@ for i = simt
 end
 
 maxminlarge = max(abs(max(maxs)),abs(min(mins)));
-maxdiff = maxminlarge;
-mindiff = -maxminlarge;
+% maxdiff = maxminlarge;
+% mindiff = -maxminlarge;
+maxdiff = 2.2;
+mindiff = 2.2;
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% boundaries %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

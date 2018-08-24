@@ -2,11 +2,11 @@ addpath ../mylib
 
 global g;
 
-sizegapdata = 1; % 1:yes, 0:no
+sizegapdata = 0; % 1:yes, 0:no
 
 frameIncrement = 5;
 
-filestring2 = strcat('../',filestring);
+filestring2 = filestring;%strcat('../',filestring);
 
 simt = 1:115;
 
@@ -140,7 +140,7 @@ set(gcf,'Position',[440,378,700,400]);
 annotation(gcf,'textbox',[0.002 0.035 0.1 0.065],...
     'String',{'500 \mum'},'LineStyle','none','FontSize',16);
 
-annotation(gcf,'textbox',[0.125 0.0225 0.18 0.06],...
+annotation(gcf,'textbox',[0.142 0.0225 0.18 0.06],...
     'String','Boundary Error:','LineStyle','none','FontSize',16,...
     'HorizontalAlignment','right');
 annotation(gcf,'textbox',[0.53 0.0225 0.23 0.06],...
@@ -155,7 +155,7 @@ for i = 1:length(simt)
     delete(h2);
     
 %%%%%%% actual image and boundaries
-    plotbdy = subaxis(1,2,1,'MarginLeft',0.01,'MarginRight',0.09);
+    plotbdy = subaxis(1,2,1,'MarginLeft',0.01,'MarginRight',0.05);
     image(expimg{i},'XData',[g.xmin g.xmax],'YData',[g.ymin g.ymax])
     colormap(plotbdy,gray(256))
     hold on
@@ -170,7 +170,7 @@ for i = 1:length(simt)
     
     set(gca,'FontSize',16);
     lgd = legend({'Simulation','Experiment'},'Color',[0.8 0.8 0.8],...
-        'Position',[0.270714276307122 0.901249988279957 0.164285714285714 0.09875]);
+        'Position',[0.290714276307122 0.901249988279957 0.164285714285714 0.09875]);
     
     xlimplot = get(gca,'XLim');
     ylimplot = get(gca,'YLim');
@@ -208,17 +208,17 @@ for i = 1:length(simt)
         'Units','normalized','HorizontalAlignment', 'right',...
         'Position',[0.325,1.02]);
     
-    h1 = annotation(gcf,'textbox',[0.3 0.0175 0.16 0.06],...
+    h1 = annotation(gcf,'textbox',[0.315 0.0175 0.16 0.06],...
         'String',strcat('$D_{',num2str(i),'}\!=$',num2str(avgnorm_dist(i))),...
         'LineStyle','none','FontSize',16,'HorizontalAlignment','left',...
         'Interpreter','latex');
     
 %%%%%%% density ratio differences
-    subaxis(1,2,2,'MarginRight',0.05,'MarginLeft',-0.09)
+    plotdens = subaxis(1,2,2,'MarginRight',0.03,'MarginLeft',-0.09);
     difference{i}(difference{i}==0) = NaN;
     
     imagescnan(difference{i},[0,max(-mindiff,maxdiff)])
-    colormap(flipud(pmkmp(64,'LinLhot')))
+    colormap(plotdens,flipud(pmkmp(64,'LinLhot')))
     colorbar;
     
     xticks([]);
