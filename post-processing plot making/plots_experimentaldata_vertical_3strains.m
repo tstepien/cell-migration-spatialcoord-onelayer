@@ -34,20 +34,19 @@ epsx = cell(1,length(tplot));
 epsy = cell(1,length(tplot));
 epsxy = cell(1,length(tplot));
 epsyx = cell(1,length(tplot));
-maxs_ep = zeros(length(tplot),4);
-mins_ep = zeros(length(tplot),4);
+maxs_ep = zeros(length(tplot),3);
+mins_ep = zeros(length(tplot),3);
 j = 0;
 for i = tplot
     j = j+1;
     epsx{j} = imread(strcat(filestring,'strains/epsx_',num2str(tplot(j)),'.tif'),'tif');
     epsy{j} = imread(strcat(filestring,'strains/epsy_',num2str(tplot(j)),'.tif'),'tif');
     epsxy{j} = imread(strcat(filestring,'strains/epsxy_',num2str(tplot(j)),'.tif'),'tif');
-    epsyx{j} = imread(strcat(filestring,'strains/epsyx_',num2str(tplot(j)),'.tif'),'tif');
     
     maxs_ep(j,:) = [max(max(epsx{j})) , max(max(epsy{j})) , ...
-        max(max(epsxy{j})) , max(max(epsyx{j}))];
+        max(max(epsxy{j}))];
     mins_ep(j,:) = [min(min(epsx{j})) , min(min(epsy{j})) , ...
-        min(min(epsxy{j})) , min(min(epsyx{j}))];
+        min(min(epsxy{j}))];
 end
 max_ep = max(maxs_ep(:));
 min_ep = min(mins_ep(:));
@@ -158,7 +157,7 @@ for i = 1:3
     imagescnan(epsxy{i},[-bnds,bnds])
     colormap(ax4,mymap_RB)
 
-    set(gca,'XTick',[],'YTick',[])
+    set(gca,'XTick',[],'YTick',[],'FontSize',16)
     
     if i==1
         ylabel('$\epsilon_{xy}=\epsilon_{yx}$','FontSize',24,'Interpreter','latex');
