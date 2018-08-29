@@ -17,7 +17,7 @@ exp_scale = .177; %pixels per micron scale
 %%%------------------------- model parameters --------------------------%%%
 growthfunction = 'logistic_masslimited';
 
-nameofsavedfile = strcat('Pos9exp3_',growthfunction);
+nameofsavedfile = strcat('Pos9exp3_a_',growthfunction);
 
 rng('shuffle')
 numwalkers = 10000 - 5;
