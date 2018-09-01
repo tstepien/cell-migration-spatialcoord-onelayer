@@ -20,7 +20,7 @@ growthfunction = 'logistic_masslimited';
 nameofsavedfile = strcat('Pos6exp4_a_',growthfunction);
 
 rng('shuffle')
-numwalkers = 10000 - (72);
+numwalkers = 10000 - (72+2910+2700);
 threshold = 1500;
 
 [paramval,minquant] = myemceeinit(numwalkers,threshold,filestring,...
