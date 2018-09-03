@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ### Specify a name for the job
-#PBS -N emcee_pos9exp1_a
+#PBS -N emcee_pos14exp2_b
 
 ### Specify the group name
 #PBS -W group_list=lin1
@@ -37,5 +37,5 @@ module load matlab/r2018a
 cd ~stepien/cellmigrationcode
 
 date
-matlab -nodisplay -nosplash < ma_emceeinit_Pos9exp1_a.m > progress/Pos9exp1_a.txt
+matlab -nodisplay -nosplash < ma_emceeinit_Pos14exp2_b.m > progress/Pos14exp2_b.txt
 date
