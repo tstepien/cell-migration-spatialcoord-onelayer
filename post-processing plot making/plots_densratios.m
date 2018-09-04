@@ -185,7 +185,8 @@ for i = 1:length(simt)
         title([num2str((simt(i)-1)*5),' min'],'FontSize',24,...
             'FontWeight','bold','Units','normalized','Position', [0.5,1]);
     elseif strcmp(timelabels,'hr')==1
-        title([num2str((simt(i)-1)*5/60),' hr'],'FontSize',24,...
+        % precision: 3 sig figs
+        title([num2str((simt(i)-1)*5/60,3),' hr'],'FontSize',24,...
             'FontWeight','bold','Units','normalized','Position', [0.5,1]);
     end
     
