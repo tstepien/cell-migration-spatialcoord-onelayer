@@ -19,10 +19,10 @@ paramestim = 0; %%% parameter estimation? 1=yes, 0=no
 %%%
 growthfunction = 'logistic_masslimited';
 %%% min value
-param.Fk   = 0.9329;
-param.kb   = 838;
-param.alpha = 0.9668;
-rho0 = 1610;
+param.Fk   = 0.8295;
+param.kb   = 950;
+param.alpha = 0.8963;
+rho0 = 1752;
 
 %%% average value
 % param.Fk   = 0.5560;

@@ -18,11 +18,17 @@ paramestim = 0; %%% parameter estimation? 1=yes, 0=no
 %%%------------------------- model parameters --------------------------%%%
 %%% 
 growthfunction = 'logistic_masslimited';
-%%% fit #1
-param.Fk   = 103/120; %0.8583
-param.kb   = 1625;
-param.alpha = 1;
-rho0 = 2000;
+%%% from min
+param.Fk   = 0.9845;
+param.kb   = 1321;
+param.alpha = 0.9903;
+rho0 = 1372;
+
+% %%% fit #1
+% param.Fk   = 103/120; %0.8583
+% param.kb   = 1625;
+% param.alpha = 1;
+% rho0 = 2000;
 
 % %%% fit #2
 % param.Fk   = 41/60; %0.6833
