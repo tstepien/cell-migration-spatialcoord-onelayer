@@ -2,6 +2,8 @@ addpath ../mylib
 
 global g;
 
+%%% Pos9exp1 for paper Figure 2
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% figure options %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 jetcolormap = 0; % this is 1-yes or 0-no
 

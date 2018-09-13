@@ -21,6 +21,7 @@ numkeep = 3; %number to keep for scatter plot
 [sortedValues,sortIndex] = sort(minquant);
 minIndex = sortIndex(1:numkeep);
 
+models = paramval;
 minparam = models(:,minIndex);
 avgval = [mean(models(1,:)) , mean(models(2,:)) , mean(models(3,:)) , ...
     mean(models(4,:))];

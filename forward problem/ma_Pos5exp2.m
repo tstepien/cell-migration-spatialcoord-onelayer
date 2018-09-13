@@ -24,6 +24,11 @@ param.kb   = 721;
 param.alpha = 0.9786;
 rho0 = 1405;
 
+param.Fk   = 0.9059;
+param.kb   = 510;
+param.alpha = 0.9492;
+rho0 = 1312;
+
 %%% average value (from Pos6exp3)
 % param.Fk   = 0.5379;
 % param.kb   = 2363;

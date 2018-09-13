@@ -1,6 +1,7 @@
 clc
 clear variables
 close all
+addpath ..
 addpath ../mylib
 addpath ../mylib/shapes
 addpath ../mylib/growthfunctions
@@ -18,10 +19,10 @@ paramestim = 0; %%% parameter estimation? 1=yes, 0=no
 %%%
 growthfunction = 'logistic_masslimited';
 %%% min val
-param.Fk = 1.24;
-param.kb = 548;
-param.alpha = 0.75;
-rho0 = 1103;
+param.Fk = 1.0927;
+param.kb = 536;
+param.alpha = 0.9352;
+rho0 = 1055;
 
 % param.Fk   = 0.68480;
 % param.kb   = 916;
