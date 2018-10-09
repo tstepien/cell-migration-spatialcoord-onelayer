@@ -3,6 +3,7 @@ clc;
 close all;
 
 load(strcat('emceeinit_10000samples_','Pos6exp3','.mat'))
+models = paramval;
 
 numpts_alpha = 5;
 numpts_rho0 = 5;

@@ -19,10 +19,10 @@ figureson = 1; %%% figures on? 1=yes, 0=no
 %%%
 growthfunction = 'logistic_masslimited';
 %%% minimum value (from Pos11exp1)
-param.Fk   = 0.6351;
-param.kb   = 507;
-param.alpha = 0.9429;
-rho0 = 1182;
+param.Fk   = 0.6101;
+param.kb   = 510;
+param.alpha = 0.9479;
+rho0 = 1404;
 
 %%% average value (from Pos11exp1)
 % param.Fk   = 0.5009;

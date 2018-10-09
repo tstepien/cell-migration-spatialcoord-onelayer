@@ -2,7 +2,7 @@ addpath ../mylib
 
 global g;
 
-sizegapdata = 0; % 1:yes, 0:no
+sizegapdata = 1/2; % 1:yes, 0:no %1/2:pos11exp1, pos6exp3, pos6, pos2exp1
 
 frameIncrement = 5;
 
@@ -29,6 +29,20 @@ for i = simt
     elseif sizegapdata==1
         expimg{j} = imread(strcat(filestring2,'images/img_000000',...
             sprintf('%03d',i-1),'__000.tif'),'tif');
+    elseif sizegapdata==1/2
+        if j==1
+            whichpos = num2str(input('Which Pos? '));
+            whichexp = num2str(input('Which exp? '));
+        end
+        if strcmp(whichexp,'0')==1
+            expimg{j} = imread(strcat('../../../../Desktop/RESEARCH!!!/researchdata',...
+                '/experimental_data/SizeGapData/2014_02_21/Pos6/images/Pos6.tif'),j);
+        else
+            expimg{j} = imread(strcat('../../../../Desktop/RESEARCH!!!/movies - xenopus',...
+                '/Shirley Ma/100714 Animal cap x0.8 Scion x2_0/100714 Animal cap x0.8 Scion x2_0',...
+                '/explants separated/Pos',whichpos,'_exp',whichexp,'/Pos',...
+                whichpos,'exp',whichexp,'.tif'),j);
+        end
     end
 end
 
@@ -195,9 +209,9 @@ for i = 1:length(simt)
         scaleheight = 40;
         amtmovetoaxes = 25;
     end
-    if sizegapdata==0
+    if sizegapdata==0 || (sizegapdata==1/2 && strcmp(whichexp,'0')~=1)
         fc = [0,0,0];
-    elseif sizegapdata==1
+    elseif sizegapdata==1 || (sizegapdata==1/2 && strcmp(whichexp,'0')==1)
         fc = [1,1,1];
     end
     rectangle('Position',[xlimplot(1)+amtmovetoaxes,...
