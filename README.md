@@ -14,6 +14,15 @@ and is based off of code developed for the work described in the following paper
 
 >S. Osher, and J.A. Sethian. Fronts propagating with curvature-dependent speed: algorithms based on Hamilton-Jacobi formulations. *J. Comput. Phys.* 79 (1988), 12-49, DOI: [10.1016/0021-9991(88)90002-2](https://doi.org/10.1016/0021-9991(88)90002-2)
 
+## Necessary Items
+
+*Images:* The raw experimental time-lapse images of *Xenopus laevis* embryonic tissue migration and their corresponding MATLAB-processed files can be downloaded from Dryad via the following DOI: [10.5061/dryad.8pj52vk](https://doi.org/10.5061/dryad.8pj52vk)
+
+*Applications:* The code in this package is developed for [MATLAB](https://www.mathworks.com/products/matlab.html). Furthermore, the following MATLAB packages were also used:
++ [GWMCMC](https://github.com/grinsted/gwmcmc)
++ [imagescnan](https://www.mathworks.com/matlabcentral/fileexchange/20516-imagescnan-m-v2-1-aug-2009)
++ [Perceptually improved colormaps (pmkmp)](https://www.mathworks.com/matlabcentral/fileexchange/28982-perceptually-improved-colormaps)
++ [Subaxis - Subplot](https://www.mathworks.com/matlabcentral/fileexchange/3696-subaxis-subplot)
 
 ## Licensing
 Copyright 2012-2019 [Tracy Stepien](http://github.com/tstepien/).  This is free software made available under the MIT License. For details see the LICENSE file.
