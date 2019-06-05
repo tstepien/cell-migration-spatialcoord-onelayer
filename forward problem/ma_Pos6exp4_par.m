@@ -1,9 +1,13 @@
 clc
 clear variables
 close all
+addpath ../
+addpath ../mylib_par
+addpath ../mylib_par/shapes
+addpath ../mylib_par/growthfunctions
 
 % location of experimental data
-filestring = '../../../../../RESEARCH!!!/researchdata/experimental_data/100714 Animal cap x0.8 Scion x2_0/Pos6_exp4/';
+filestring = '../experimental_data/100714 Animal cap x0.8 Scion x2_0/Pos6_exp4/';
 
 %%%------------------------- model parameters --------------------------%%%
 %%%

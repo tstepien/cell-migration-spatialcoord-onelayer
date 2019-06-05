@@ -1,6 +1,7 @@
 clc
 clear variables
 close all
+addpath ../
 addpath ../mylib
 addpath ../mylib/shapes
 addpath ../mylib/growthfunctions

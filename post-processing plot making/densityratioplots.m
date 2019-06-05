@@ -1,4 +1,4 @@
-filestring = '../../../../../../RESEARCH!!!/researchdata/experimental_data/2014-06-11_ACTriangles/Pos4/';
+filestring = '../experimental_data/2014-06-11_ACTriangles/Pos4/';
 
 load(strcat(filestring,'densratios.mat'));
 

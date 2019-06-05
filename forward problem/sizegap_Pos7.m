@@ -1,15 +1,16 @@
 clc
-clear all
+clear variables
 close all
-addpath mylib
-addpath mylib/shapes
-addpath mylib/growthfunctions
+addpath ../
+addpath ../mylib
+addpath ../mylib/shapes
+addpath ../mylib/growthfunctions
 
 global time figureson rho0 number_nodes exp_px exp_scale filestring;
 global growthfunction;
 
 % location of experimental data
-filestring = '../../../../../RESEARCH!!!/researchdata/experimental_data/SizeGapData/2014_02_21/Pos7/';
+filestring = '../experimental_data/SizeGapData/2014_02_21/Pos7/';
 
 figureson = 1; %%% figures on? 1=yes, 0=no
 paramestim = 0; %%% parameter estimation? 1=yes, 0=no

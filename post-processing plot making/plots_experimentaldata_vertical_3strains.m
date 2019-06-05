@@ -11,7 +11,7 @@ timelabels = 'hr'; % min - labels on the top given in minutes
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 frameIncrement = 5;
 
-filestring = '../../../../Desktop/RESEARCH!!!/researchdata/experimental_data/100714 Animal cap x0.8 Scion x2_0/Pos2_exp1/';
+filestring = '../experimental_data/100714 Animal cap x0.8 Scion x2_0/Pos2_exp1/';
 
 number_nodes = 100;
 exp_px = [492,504];
