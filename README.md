@@ -28,13 +28,13 @@ The MATLAB processed files should be placed in a root-level folder titled 'exper
 
 ## Description of Folders
 
-+ emcee_mymod: My modification of the [GWMCMC](https://github.com/grinsted/gwmcmc) routine to obtain a posterior distribution of parameter estimates to match the simulations to experimental data
-+ forward_problem: Code to run the forward problem, in other words, to simuate tissue explant migration
-+ inverse_problem: Code to run parameter estimation
-+ mylib: Auxiliary files for the numerical method
-+ mylib_par: Auxiliary files for the numerical method where parfor loops are used
-+ post-processing-plot-making: Code to create figures and movies
-+ results: Contains MATLAB data files containing the posterior distribution parameter estimates and code for related figures, as well as code for statistical analysis
++ [emcee_mymod](emcee_mymod): My modification of the [GWMCMC](https://github.com/grinsted/gwmcmc) routine to obtain a posterior distribution of parameter estimates to match the simulations to experimental data
++ [forward_problem](forward_problem): Code to run the forward problem, in other words, to simuate tissue explant migration
++ [inverse_problem](inverse_problem): Code to run parameter estimation
++ [mylib](mylib): Auxiliary files for the numerical method
++ [mylib_par](mylib_par): Auxiliary files for the numerical method where parfor loops are used
++ [post-processing-plot-making](post-processing-plot-making): Code to create figures and movies
++ [results](results): Contains MATLAB data files containing the posterior distribution parameter estimates and code for related figures, as well as code for statistical analysis
 
 ## Licensing
 Copyright 2012-2019 [Tracy Stepien](http://github.com/tstepien/).  This is free software made available under the MIT License. For details see the LICENSE file.
