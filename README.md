@@ -18,11 +18,23 @@ and is based off of code developed for the work described in the following paper
 
 *Images:* The raw experimental time-lapse images of *Xenopus laevis* embryonic tissue migration and their corresponding MATLAB-processed files can be downloaded from Dryad via the following DOI: [10.5061/dryad.8pj52vk](https://doi.org/10.5061/dryad.8pj52vk)
 
+The MATLAB processed files should be placed in a root-level folder titled 'experimental_data' for all of the code to run.
+
 *Applications:* The code in this package is developed for [MATLAB](https://www.mathworks.com/products/matlab.html). Furthermore, the following MATLAB packages were also used:
 + [GWMCMC](https://github.com/grinsted/gwmcmc)
 + [imagescnan](https://www.mathworks.com/matlabcentral/fileexchange/20516-imagescnan-m-v2-1-aug-2009)
 + [Perceptually improved colormaps (pmkmp)](https://www.mathworks.com/matlabcentral/fileexchange/28982-perceptually-improved-colormaps)
 + [Subaxis - Subplot](https://www.mathworks.com/matlabcentral/fileexchange/3696-subaxis-subplot)
+
+## Description of Folders
+
++ emcee_mymod: My modification of the [GWMCMC](https://github.com/grinsted/gwmcmc) routine to obtain a posterior distribution of parameter estimates to match the simulations to experimental data
++ forward_problem: Code to run the forward problem, in other words, to simuate tissue explant migration
++ inverse_problem: Code to run parameter estimation
++ mylib: Auxiliary files for the numerical method
++ mylib_par: Auxiliary files for the numerical method where parfor loops are used
++ post-processing-plot-making: Code to create figures and movies
++ results: Contains MATLAB data files containing the posterior distribution parameter estimates and code for related figures, as well as code for statistical analysis
 
 ## Licensing
 Copyright 2012-2019 [Tracy Stepien](http://github.com/tstepien/).  This is free software made available under the MIT License. For details see the LICENSE file.
